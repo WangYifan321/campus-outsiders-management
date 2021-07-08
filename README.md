@@ -1,21 +1,19 @@
-# final_exam
+# 程序设计实践期末大作业
 
-> A Vue.js project
+> 前端vue，后端go
 
-## Build Setup
+实现了基本的校园外来人的信息管理。
 
-``` bash
-# install dependencies
-npm install
+## 开发背景
 
-# serve with hot reload at localhost:8080
-npm run dev
+调研新冠疫情期间校园人员进出管理流程，设计合理可行的软件系统实现人员进出登记与管理功能，能实现人员进出申请和进出登记等功能，能按人员信息、日期、时间段等信息查询人员进出校园记录。人员登记基本信息包 括：姓名、性别、联系电话、身份证号、单位信息、车牌号、进校事由、担保人、 担保人电话、健康码、14天内是否去过疫区、是否有咳嗽发热等症状、申请进入 时间、申请离开时间、实际进入时间、实际离开时间等信息。根据调研结果，可以自行设计更具有实用性和创新性的系统功能。
 
-# build for production with minification
-npm run build
+## 系统功能设计
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+本系统前端部分使用web的方式，通过Vue来搭建交互界面，后端实现连接数据库，将对应的数据作可持久化存储。
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+外来人员申请系统主要实现两个功能，一个是提交申请，一个是查询相应的申请，对于查询功能，因为涉及身份证等隐私，所以需要外来人员提供姓名+身份证，验证后传回对应的最近申请，在这里使用了一个无账号的token来实现权限访问。
+
+后台管理系统中分为门卫和管理员两种后台管理，对项目背景进行分析，发现担保人和后台账号都是一人一个账号模式，所以决定实现只有后台管理员能够注册和注销担保人，且不能确认入校离校，对于门卫管理员则可以确认入校离校。并且实现了复合条件查询，这些也是通过token机制来实现的。
+
+担保人审批系统要实现登录功能，同时返回一个特定的token，会显示担保人为自己的未审批的申请，担保人能够将申请改为接受和拒绝两种状态
